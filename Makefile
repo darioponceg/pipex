@@ -1,7 +1,10 @@
 NAME = pipex
 CC = gcc
 CCFLAGS = -Wall -Werror -Wextra
-SRC = src/*.c
+SRC = 	src/pipex.c \
+		src/parser.c \
+		src/execute.c \
+		src/utils.c
 OBJ = $(SRC:.c=.o)
 LIBFT = libft/libft.a
 INCLUDES = -I include -I libft

@@ -6,7 +6,7 @@
 /*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:03:38 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/11 19:00:09 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/12 19:32:37 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,5 @@ int	main(int argc, char **argv, char **envp)
 	init_pipex(&data, argv, envp);
 	execute_pipex(&data);
 	cleanup_pipex(&data);
-	return (0);
+	return (data.exit_code);
 }
