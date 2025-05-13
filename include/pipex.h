@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dponce-g <dponce-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:33:18 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/12 19:23:08 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/13 20:20:04 by dponce-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # include <sys/wait.h>
 # include "libft.h"
 
-typedef struct s_pipex {
+typedef struct s_pipex
+{
 	int		infile_fd;
 	int		outfile_fd;
 	int		pipe_fd[2];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dponce-g <dponce-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:13:14 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/13 14:23:25 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/13 20:19:07 by dponce-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*get_path_from_envp(char **envp)
 void	init_pipex(t_pipex *data, char **argv, char **envp)
 {
 	char	*path_line;
-	
+
 	data->infile_fd = open(argv[1], O_RDONLY);
 	if (data->infile_fd < 0)
 		exit_error("Error infile");

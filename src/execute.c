@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dponce-g <dponce-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:44:10 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/12 19:21:53 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/13 20:19:28 by dponce-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static char	*find_cmd_path(char *cmd, char **paths)
 static void	child_process_1(t_pipex *data)
 {
 	char	*cmd1_path;
-	
+
 	if (dup2(data->infile_fd, STDIN_FILENO) < 0)
 		exit_error("Error. dup2 infile");
 	if (dup2(data->pipe_fd[1], STDOUT_FILENO) < 0)
@@ -61,7 +61,7 @@ static void	child_process_1(t_pipex *data)
 static void	child_process_2(t_pipex *data)
 {
 	char	*cmd2_path;
-	
+
 	if (dup2(data->pipe_fd[0], STDIN_FILENO) < 0)
 		exit_error("Error. dup2 pipe read");
 	if (dup2(data->outfile_fd, STDOUT_FILENO) < 0)
@@ -81,7 +81,7 @@ static void	child_process_2(t_pipex *data)
 void	execute_pipex(t_pipex *data)
 {
 	int	status_cmd2;
-	
+
 	if (pipe(data->pipe_fd) < 0)
 		exit_error("Error creating pipe");
 	data->pid1 = fork();
