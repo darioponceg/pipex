@@ -6,13 +6,13 @@
 /*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:13:14 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/11 19:44:33 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/13 14:23:25 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static char	*get_paht_from_envp(char **envp)
+static char	*get_path_from_envp(char **envp)
 {
 	int	i;
 
@@ -21,7 +21,7 @@ static char	*get_paht_from_envp(char **envp)
 	i = 0;
 	while (envp[i])
 	{
-		if (ft_strncmp(envp[i], "PAHT=", 5) == 0)
+		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
 			return (envp[i] + 5);
 		i++;
 	}
