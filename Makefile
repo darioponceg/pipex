@@ -1,7 +1,7 @@
 NAME = pipex
 CC = gcc
 CCFLAGS = -Wall -Werror -Wextra
-SRC = 	src/pipex.c \
+SRC = 	src/main.c \
 		src/parser.c \
 		src/execute.c \
 		src/utils.c
