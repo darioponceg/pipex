@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dponce-g <dponce-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:33:18 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/13 20:20:04 by dponce-g         ###   ########.fr       */
+/*   Updated: 2025/05/15 22:42:44 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	cleanup_pipex(t_pipex *data);
 
 void	print_error(char *message);
 void	exit_error(char *message);
+void	exit_error_success(char *message);
 void	free_array(char **array);
 
 #endif

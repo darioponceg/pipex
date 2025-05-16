@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:29:39 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/11 18:51:39 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/15 22:42:32 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@ void	exit_error(char *message)
 {
 	print_error(message);
 	exit(EXIT_FAILURE);
+}
+
+void	exit_error_success(char *message)
+{
+	print_error(message);
+	exit(EXIT_SUCCESS);
 }
 
 void	free_array(char **array)

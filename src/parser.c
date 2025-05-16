@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dponce-g <dponce-g@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 18:13:14 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/13 20:19:07 by dponce-g         ###   ########.fr       */
+/*   Updated: 2025/05/15 22:43:03 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	init_pipex(t_pipex *data, char **argv, char **envp)
 
 	data->infile_fd = open(argv[1], O_RDONLY);
 	if (data->infile_fd < 0)
-		exit_error("Error infile");
+		exit_error_success("Error infile");
 	data->outfile_fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (data->outfile_fd < 0)
 		exit_error("Error outfile");
