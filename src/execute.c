@@ -6,7 +6,7 @@
 /*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:44:10 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/20 13:16:14 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/20 18:19:50 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,22 @@ static void	child_process_1(t_pipex *data)
 	char	*cmd1_path;
 
 	if (data->infile_non_exist == 1)
-	{
-		close(data->pipe_fd[0]);
-		close(data->pipe_fd[1]);
 		exit_cleanup(data, EXIT_SUCCESS);
-	}
 	if (dup2(data->infile_fd, STDIN_FILENO) < 0)
 		exit_cleanup(data, EXIT_FAILURE);
 	if (dup2(data->pipe_fd[1], STDOUT_FILENO) < 0)
 		exit_cleanup(data, EXIT_FAILURE);
-	close(data->pipe_fd[0]);
-	close(data->pipe_fd[1]);
-	close(data->infile_fd);
-	close(data->outfile_fd);
+	close_fd(data);
 	cmd1_path = find_cmd_path(data->cmd1_args[0], data->cmd_path);
 	if (!cmd1_path)
-		exit_error_cleanup(data, data->cmd1_args[0], 127);
+	{
+		if (data->cmd1_args[0])
+		{
+			ft_putstr_fd(data->cmd1_args[0], STDERR_FILENO);
+			ft_putstr_fd(": command not found\n", STDERR_FILENO);
+		}
+		exit_cleanup(data, 0);
+	}
 	execve(cmd1_path, data->cmd1_args, data->envp);
 	free(cmd1_path);
 	exit_cleanup(data, EXIT_FAILURE);
@@ -72,14 +72,17 @@ static void	child_process_2(t_pipex *data)
 		exit_cleanup(data, EXIT_FAILURE);
 	if (dup2(data->outfile_fd, STDOUT_FILENO) < 0)
 		exit_cleanup(data, EXIT_FAILURE);
-	close(data->pipe_fd[0]);
-	close(data->pipe_fd[1]);
-	if (data->infile_fd >= 0)
-		close(data->infile_fd);
-	close(data->outfile_fd);
+	close_fd(data);
 	cmd2_path = find_cmd_path(data->cmd2_args[0], data->cmd_path);
 	if (!cmd2_path)
-		exit_error_cleanup(data, data->cmd2_args[0], 127);
+	{
+		if (data->cmd2_args[0])
+		{
+			ft_putstr_fd(data->cmd2_args[0], STDERR_FILENO);
+			ft_putstr_fd(": command not found\n", STDERR_FILENO);
+		}
+		exit_cleanup(data, 127);
+	}
 	execve(cmd2_path, data->cmd2_args, data->envp);
 	free(cmd2_path);
 	exit_cleanup(data, EXIT_FAILURE);

@@ -6,7 +6,7 @@
 /*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:29:39 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/20 13:14:05 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/20 17:25:43 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,16 @@ void	exit_cleanup(t_pipex *data, int code)
 {
 	cleanup_pipex(data);
 	exit(code);
+}
+
+void	close_fd(t_pipex *data)
+{
+	close(data->pipe_fd[0]);
+	close(data->pipe_fd[1]);
+	if (data->infile_fd >= 0)
+		close(data->infile_fd);
+	if (data->outfile_fd >= 0)
+		close(data->outfile_fd);
 }
 
 void	free_array(char **array)
@@ -52,4 +62,8 @@ void	cleanup_pipex(t_pipex *data)
 		close(data->infile_fd);
 	if (data->outfile_fd >= 0)
 		close(data->outfile_fd);
+	if (data->pipe_fd[0] >= 0)
+		close(data->pipe_fd[0]);
+	if (data->pipe_fd[1] >= 0)
+		close(data->pipe_fd[1]);
 }
