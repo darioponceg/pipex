@@ -6,7 +6,7 @@
 /*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:33:18 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/20 12:07:15 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/20 13:15:16 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,7 @@ void	init_pipex(t_pipex *data, char **argv, char **envp);
 void	execute_pipex(t_pipex *data);
 void	cleanup_pipex(t_pipex *data);
 
-void	print_error(char *message);
-void	exit_error(char *message);
-void	exit_error_code(char *message, int code);
-void	exit_error_code_cleanup(t_pipex *data, char *message, int code);
+void	exit_error_cleanup(t_pipex *data, char *message, int code);
 void	exit_cleanup(t_pipex *data, int code);
 void	free_array(char **array);
 

@@ -6,7 +6,7 @@
 /*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/11 19:44:10 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/20 13:04:31 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/20 13:16:14 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	child_process_1(t_pipex *data)
 	if (data->infile_non_exist == 1)
 	{
 		close(data->pipe_fd[0]);
-    	close(data->pipe_fd[1]);
+		close(data->pipe_fd[1]);
 		exit_cleanup(data, EXIT_SUCCESS);
 	}
 	if (dup2(data->infile_fd, STDIN_FILENO) < 0)
@@ -58,7 +58,7 @@ static void	child_process_1(t_pipex *data)
 	close(data->outfile_fd);
 	cmd1_path = find_cmd_path(data->cmd1_args[0], data->cmd_path);
 	if (!cmd1_path)
-		exit_error_code_cleanup(data, data->cmd1_args[0], 127);
+		exit_error_cleanup(data, data->cmd1_args[0], 127);
 	execve(cmd1_path, data->cmd1_args, data->envp);
 	free(cmd1_path);
 	exit_cleanup(data, EXIT_FAILURE);
@@ -79,7 +79,7 @@ static void	child_process_2(t_pipex *data)
 	close(data->outfile_fd);
 	cmd2_path = find_cmd_path(data->cmd2_args[0], data->cmd_path);
 	if (!cmd2_path)
-		exit_error_code_cleanup(data, data->cmd2_args[0], 127);
+		exit_error_cleanup(data, data->cmd2_args[0], 127);
 	execve(cmd2_path, data->cmd2_args, data->envp);
 	free(cmd2_path);
 	exit_cleanup(data, EXIT_FAILURE);
@@ -90,15 +90,15 @@ void	execute_pipex(t_pipex *data)
 	int	status_cmd2;
 
 	if (pipe(data->pipe_fd) < 0)
-		exit_error_code_cleanup(data, "Error pipe", EXIT_FAILURE);
+		exit_error_cleanup(data, "Error pipe", EXIT_FAILURE);
 	data->pid1 = fork();
 	if (data->pid1 < 0)
-		exit_error_code_cleanup(data, "Error fork 1", EXIT_FAILURE);
+		exit_error_cleanup(data, "Error fork 1", EXIT_FAILURE);
 	if (data->pid1 == 0)
 		child_process_1(data);
 	data->pid2 = fork();
 	if (data->pid2 < 0)
-		exit_error_code_cleanup(data, "Error fork 2", EXIT_FAILURE);
+		exit_error_cleanup(data, "Error fork 2", EXIT_FAILURE);
 	if (data->pid2 == 0)
 		child_process_2(data);
 	close(data->pipe_fd[0]);
