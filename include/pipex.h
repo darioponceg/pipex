@@ -6,7 +6,7 @@
 /*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 10:33:18 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/15 22:42:44 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/20 12:07:15 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 typedef struct s_pipex
 {
 	int		infile_fd;
+	int		infile_non_exist;
 	int		outfile_fd;
 	int		pipe_fd[2];
 	char	**cmd1_args;
@@ -41,7 +42,9 @@ void	cleanup_pipex(t_pipex *data);
 
 void	print_error(char *message);
 void	exit_error(char *message);
-void	exit_error_success(char *message);
+void	exit_error_code(char *message, int code);
+void	exit_error_code_cleanup(t_pipex *data, char *message, int code);
+void	exit_cleanup(t_pipex *data, int code);
 void	free_array(char **array);
 
 #endif

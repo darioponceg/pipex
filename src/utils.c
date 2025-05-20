@@ -6,7 +6,7 @@
 /*   By: dponce <dponce@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 11:29:39 by dponce            #+#    #+#             */
-/*   Updated: 2025/05/15 22:42:32 by dponce           ###   ########.fr       */
+/*   Updated: 2025/05/20 13:08:07 by dponce           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,23 @@ void	exit_error(char *message)
 	exit(EXIT_FAILURE);
 }
 
-void	exit_error_success(char *message)
+void	exit_error_code(char *message, int code)
 {
 	print_error(message);
-	exit(EXIT_SUCCESS);
+	exit(code);
+}
+
+void	exit_error_code_cleanup(t_pipex *data, char *message, int code)
+{
+	perror(message);
+	cleanup_pipex(data);
+	exit(code);
+}
+
+void	exit_cleanup(t_pipex *data, int code)
+{
+	cleanup_pipex(data);
+	exit(code);
 }
 
 void	free_array(char **array)
